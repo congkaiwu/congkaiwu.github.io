@@ -119,4 +119,4 @@ Deleted branch iss53 (was 8d49b2b).
    5. `$ git branch -d iss53` 删除分支iss53。
 
 #### 更多详细信息
-* [Git官方文档]("https://git-scm.com/book/en/v2")
+* [Git官方文档](https://git-scm.com/book/en/v2)
