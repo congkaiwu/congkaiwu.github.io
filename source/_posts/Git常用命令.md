@@ -3,7 +3,6 @@ title: Git使用总结
 date: 2019-04-26 10:08:12
 tags:
 ---
-
 * **克隆现有的仓库**
 ```
 $ git clone https://github.com/libgit2/libgit2
@@ -118,3 +117,6 @@ Deleted branch iss53 (was 8d49b2b).
    3. `$ git checkout master` 切换到分支 master。
    4. `$ git merge iss53` 合并分支。
    5. `$ git branch -d iss53` 删除分支iss53。
+
+#### 更多详细信息
+* [Git官方文档]("https://git-scm.com/book/en/v2")
