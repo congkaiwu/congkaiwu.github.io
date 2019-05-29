@@ -118,5 +118,59 @@ Deleted branch iss53 (was 8d49b2b).
    4. `$ git merge iss53` 合并分支。
    5. `$ git branch -d iss53` 删除分支iss53。
 
+* **第一次将本地项目推送到github**
+```
+$ git init
+Initialized empty Git repository in D:/WebProjects/express-demo/.git/
+
+$ git add .
+warning: LF will be replaced by CRLF in package-lock.json.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in package.json.
+The file will have its original line endings in your working directory
+
+$ git commit -m 'First commit.'
+[master 128688c] First commit.
+ 9 files changed, 636 insertions(+)
+ create mode 100644 .gitignore
+ create mode 100644 index.js
+ create mode 100644 middleware/authentication.js
+ create mode 100644 middleware/logger.js
+ create mode 100644 package-lock.json
+ create mode 100644 package.json
+ create mode 100644 public/readme.txt
+ create mode 100644 routes/courses.js
+ create mode 100644 routes/home.js
+
+$ git remote add origin git@github.com:congkaiwu/express-demo.git
+
+$ git pull --rebase origin master
+remote: Enumerating objects: 3, done.
+remote: Counting objects: 100% (3/3), done.
+remote: Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+Unpacking objects: 100% (3/3), done.
+From github.com:congkaiwu/express-demo
+ * branch            master     -> FETCH_HEAD
+ * [new branch]      master     -> origin/master
+
+$ git push origin master -u
+Enumerating objects: 15, done.
+Counting objects: 100% (15/15), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (11/11), done.
+Writing objects: 100% (14/14), 7.21 KiB | 738.00 KiB/s, done.
+Total 14 (delta 1), reused 0 (delta 0)
+remote: Resolving deltas: 100% (1/1), done.
+To github.com:congkaiwu/express-demo.git
+   eb1c5dd..128688c  master -> master
+Branch 'master' set up to track remote branch 'master' from 'origin'.
+
+```
+   1. 在本地项目下使用`git init`初始化，`git add .`暂存改动，`git commit -m 'First commit.'`提交。
+   2. 在GitHub上创建仓库并链接到本地项目`$ git remote add origin git@github.com:congkaiwu/express-demo.git`。
+   3. 创建时如果勾选了README文件，则用`$ git pull --rebase origin master`命令合并到本地。
+   4. 首次推送使用`$ git push origin master -u`。
+
+
 #### 更多详细信息
 * [Git官方文档](https://git-scm.com/book/en/v2)
