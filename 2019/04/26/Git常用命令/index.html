@@ -14,7 +14,7 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="克隆现有的仓库 1$ git clone https://github.com/libgit2/libgit2  在现有项目中初始化仓库，需要使用如下几个命令 123456789101112131415161718$ git init $ git remote add origin git@github.com:congkaiwu/test.git $ git remote -v origin">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-04-26T02:42:31.451Z">
+<meta property="og:updated_time" content="2019-05-29T03:21:52.881Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Git使用总结">
 <meta name="twitter:description" content="克隆现有的仓库 1$ git clone https://github.com/libgit2/libgit2  在现有项目中初始化仓库，需要使用如下几个命令 123456789101112131415161718$ git init $ git remote add origin git@github.com:congkaiwu/test.git $ git remote -v origin">
@@ -128,6 +128,15 @@
 <li><code>$ git branch -d iss53</code> 删除分支iss53。</li>
 </ol>
 </li>
+<li><p><strong>第一次将本地项目推送到github</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">$ git init</span><br><span class="line">Initialized empty Git repository in D:/WebProjects/express-demo/.git/</span><br><span class="line"></span><br><span class="line">$ git add .</span><br><span class="line">warning: LF will be replaced by CRLF in package-lock.json.</span><br><span class="line">The file will have its original line endings in your working directory</span><br><span class="line">warning: LF will be replaced by CRLF in package.json.</span><br><span class="line">The file will have its original line endings in your working directory</span><br><span class="line"></span><br><span class="line">$ git commit -m &apos;First commit.&apos;</span><br><span class="line">[master 128688c] First commit.</span><br><span class="line"> 9 files changed, 636 insertions(+)</span><br><span class="line"> create mode 100644 .gitignore</span><br><span class="line"> create mode 100644 index.js</span><br><span class="line"> create mode 100644 middleware/authentication.js</span><br><span class="line"> create mode 100644 middleware/logger.js</span><br><span class="line"> create mode 100644 package-lock.json</span><br><span class="line"> create mode 100644 package.json</span><br><span class="line"> create mode 100644 public/readme.txt</span><br><span class="line"> create mode 100644 routes/courses.js</span><br><span class="line"> create mode 100644 routes/home.js</span><br><span class="line"></span><br><span class="line">$ git remote add origin git@github.com:congkaiwu/express-demo.git</span><br><span class="line"></span><br><span class="line">$ git pull --rebase origin master</span><br><span class="line">remote: Enumerating objects: 3, done.</span><br><span class="line">remote: Counting objects: 100% (3/3), done.</span><br><span class="line">remote: Total 3 (delta 0), reused 0 (delta 0), pack-reused 0</span><br><span class="line">Unpacking objects: 100% (3/3), done.</span><br><span class="line">From github.com:congkaiwu/express-demo</span><br><span class="line"> * branch            master     -&gt; FETCH_HEAD</span><br><span class="line"> * [new branch]      master     -&gt; origin/master</span><br><span class="line"></span><br><span class="line">$ git push origin master -u</span><br><span class="line">Enumerating objects: 15, done.</span><br><span class="line">Counting objects: 100% (15/15), done.</span><br><span class="line">Delta compression using up to 8 threads</span><br><span class="line">Compressing objects: 100% (11/11), done.</span><br><span class="line">Writing objects: 100% (14/14), 7.21 KiB | 738.00 KiB/s, done.</span><br><span class="line">Total 14 (delta 1), reused 0 (delta 0)</span><br><span class="line">remote: Resolving deltas: 100% (1/1), done.</span><br><span class="line">To github.com:congkaiwu/express-demo.git</span><br><span class="line">   eb1c5dd..128688c  master -&gt; master</span><br><span class="line">Branch &apos;master&apos; set up to track remote branch &apos;master&apos; from &apos;origin&apos;.</span><br></pre></td></tr></table></figure>
+<ol>
+<li>在本地项目下使用<code>git init</code>初始化，<code>git add .</code>暂存改动，<code>git commit -m &#39;First commit.&#39;</code>提交。</li>
+<li>在GitHub上创建仓库并链接到本地项目<code>$ git remote add origin git@github.com:congkaiwu/express-demo.git</code>。</li>
+<li>创建时如果勾选了README文件，则用<code>$ git pull --rebase origin master</code>命令合并到本地。</li>
+<li>首次推送使用<code>$ git push origin master -u</code>。</li>
+</ol>
+</li>
 </ul>
 <h4 id="更多详细信息"><a href="#更多详细信息" class="headerlink" title="更多详细信息"></a>更多详细信息</h4><ul>
 <li><a href="https://git-scm.com/book/en/v2" target="_blank" rel="noopener">Git官方文档</a></li>
@@ -136,7 +145,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/26/Git常用命令/" data-id="cjuxgxwpj0000ycwac8s4vwkc" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/04/26/Git常用命令/" data-id="cjw8o2sa40000n0waqe2h6gmx" class="article-share-link">Share</a>
       
       
     </footer>
