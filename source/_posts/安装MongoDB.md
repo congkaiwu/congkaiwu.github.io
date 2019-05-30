@@ -1,14 +1,14 @@
 ---
-title: MongoDB And Mongoose
-date: 2019-05-30 00:24:50
-categories: 
-    - [Database, MongoDB]
+title: 安装MongoDB
+date: 2019-05-30 23:17:04
+categories:
+    - [Web, Node.js, Mongoose]
 tags:
 ---
 
-## windows下安装mongoDB
+## Windows下安装 MongoDB
 
-点击[MongoDB](https://www.mongodb.com/download-center/community)下载并安装(不勾选安装MongoDB Compass，负责可能很长时间都在执行安装，在官网手动下载[MongoDB Compass](https://www.mongodb.com/download-center/compass)并安装)。默认安装在C:\Program Files\MongoDB下，在系统环境变量path下添加C:\Program Files\MongoDB\Server\4.0\bin路径。
+点击[MongoDB](https://www.mongodb.com/download-center/community)下载并安装(不勾选安装MongoDB Compass，因为网络问题可能很长时间都在执行安装，直接在官网手动下载[MongoDB Compass](https://www.mongodb.com/download-center/compass)并安装)。默认安装在C:\Program Files\MongoDB下，在系统环境变量path下添加C:\Program Files\MongoDB\Server\4.0\bin路径。
 打开命令行输入mongod
 
 ```
@@ -75,15 +75,3 @@ C:\Users\cookiepeace>mongod
 2019-05-30T00:40:25.936+0800 I INDEX    [LogicalSessionCacheRefresh] build index done.  scanned 0 total records. 0 secs
 ```
 打开MongoDB Compass一路next后点击connect。
-
-## Mongoose
-
-### 连接MongoDB
-
-```bash
-const mongoose = require('mongoose');
-
-mongoose.connect('mongodb://localhost/myapp', {useNewUrlParser:true})
-    .then(() => console.log('Connected to MongoDB...'))
-    .catch(err => console.error('Connected failed', err));
-```
