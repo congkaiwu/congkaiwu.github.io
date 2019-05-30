@@ -1,6 +1,8 @@
 ---
 title: JavaScript异步
 date: 2019-05-29 23:40:31
+categories: 
+    - [Programming, JavaScript]
 tags:
 ---
 

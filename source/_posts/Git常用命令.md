@@ -1,14 +1,16 @@
 ---
 title: Git使用总结
 date: 2019-04-26 10:08:12
+categories: 
+   - [Git]
 tags:
 ---
-* **克隆现有的仓库**
+## 克隆现有的仓库
 ```
 $ git clone https://github.com/libgit2/libgit2
 ```
 
-* **在现有项目中初始化仓库，需要使用如下几个命令**
+## 在现有项目中初始化仓库，需要使用如下几个命令
 ```
 $ git init 
 
@@ -36,7 +38,7 @@ $ git checkout master
    4. `$ git fetch` 这个命令会访问远程仓库，从中拉取所有你还没有的数据。 执行完成后，你将会拥有那个远程仓库中所有分支的引用，可以随时合并或查看。
    5. `$ git checkout master` 检出 master 分支。
 
-* **跟踪/暂存/提交**
+## 跟踪/暂存/提交
 ```
 $ git status
 
@@ -52,7 +54,7 @@ $ git rm newFile.txt
    3. `git commit -m "add new File.txt"` 提交当前改动，-m选项添加本次提交的描述。
    4. `git rm newFile.txt` 删除文件
 
-* **查看提交历史，回退**
+## 查看提交历史，回退
 ```
 $ git log --since=2.weeks --pretty=oneline
 30a3e17c27196f086b45e31cc0446d0f8b113ef1 (HEAD -> master) del new.txt
@@ -87,7 +89,7 @@ HEAD is now at ace7c39 Initial commit
    3. `$ git log --grep=add --author=congkaiwu --all-match` 查询关键字 `--grep=`，作者 `--author=` ，同时满足作者和关键字条件需要增加选项`--all-match` 。
    4. `$ git reset --hard ace7c` 该命令回退到ace7c这个节点。
 
-* **分支新建与合并，删除**
+## 分支新建与合并，删除
 ```
 $ git branch -a
 * master
@@ -118,7 +120,7 @@ Deleted branch iss53 (was 8d49b2b).
    4. `$ git merge iss53` 合并分支。
    5. `$ git branch -d iss53` 删除分支iss53。
 
-* **第一次将本地项目推送到github**
+## 第一次将本地项目推送到github
 ```
 $ git init
 Initialized empty Git repository in D:/WebProjects/express-demo/.git/
@@ -172,5 +174,4 @@ Branch 'master' set up to track remote branch 'master' from 'origin'.
    4. 首次推送使用`$ git push origin master -u`。
 
 
-#### 更多详细信息
-* [Git官方文档](https://git-scm.com/book/en/v2)
+> More info: [Git官方文档](https://git-scm.com/book/en/v2)
