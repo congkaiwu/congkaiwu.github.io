@@ -143,7 +143,7 @@ async function getCourse() {
         .skip((pageNumber - 1) * pageSize)
         .limit(pageSize)
         .sort({name: 1})
-        .count();
+        .select({name: 1, tags: 1});
     console.log(courses);
 }
 ```
