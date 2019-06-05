@@ -103,10 +103,10 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="Mongoose 的增删改查（CRUD）">
 <meta property="og:url" content="http://yoursite.com/2019/05/30/Mongoose 的增删改查（CRUD）/index.html">
-<meta property="og:site_name" content="Congkaiwu Page">
+<meta property="og:site_name" content="CongkaiWu Page">
 <meta property="og:description" content="连接 MongoDB12345const mongoose = require(&apos;mongoose&apos;);mongoose.connect(&apos;mongodb://localhost/myapp&apos;, &amp;#123;useNewUrlParser:true&amp;#125;)    .then(() =&amp;gt; console.log(&apos;Connected to MongoDB...&apos;))    .catch(">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-05-30T16:27:48.638Z">
+<meta property="og:updated_time" content="2019-06-04T16:04:20.009Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mongoose 的增删改查（CRUD）">
 <meta name="twitter:description" content="连接 MongoDB12345const mongoose = require(&apos;mongoose&apos;);mongoose.connect(&apos;mongodb://localhost/myapp&apos;, &amp;#123;useNewUrlParser:true&amp;#125;)    .then(() =&amp;gt; console.log(&apos;Connected to MongoDB...&apos;))    .catch(">
@@ -127,7 +127,7 @@
   };
 </script>
 
-  <title>Mongoose 的增删改查（CRUD） | Congkaiwu Page</title>
+  <title>Mongoose 的增删改查（CRUD） | CongkaiWu Page</title>
   
 
 
@@ -186,7 +186,7 @@
     <div class="custom-logo-site-title">
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Congkaiwu Page</span>
+        <span class="site-title">CongkaiWu Page</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -348,13 +348,13 @@
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/30/Mongoose 的增删改查（CRUD）/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="congkaiwu">
+      <meta itemprop="name" content="CongkaiWu">
       <meta itemprop="description" content="Keep It Simple, Stupid">
       <meta itemprop="image" content="/uploads/009.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Congkaiwu Page">
+      <meta itemprop="name" content="CongkaiWu Page">
     </span>
 
     
@@ -405,7 +405,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-05-31 00:27:48" itemprop="dateModified" datetime="2019-05-31T00:27:48+08:00">2019-05-31</time>
+                <time title="修改时间：2019-06-05 00:04:20" itemprop="dateModified" datetime="2019-06-05T00:04:20+08:00">2019-06-05</time>
               
             
           </span>
@@ -496,7 +496,7 @@
 <h4 id="使用or和and方法查询"><a href="#使用or和and方法查询" class="headerlink" title="使用or和and方法查询"></a>使用or和and方法查询</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">async <span class="keyword">function</span> <span class="function"><span class="title">getCourse</span></span>() &#123;</span><br><span class="line">    const courses = await Course</span><br><span class="line">        .find()</span><br><span class="line">        .or([ &#123; author: <span class="string">'Mosh'</span> &#125;, &#123; isPublished: <span class="literal">true</span> &#125; ])</span><br><span class="line">        .and([ &#123;author: <span class="string">'Mosh'</span>, isPublished: <span class="literal">true</span>&#125; ])</span><br><span class="line">        .<span class="built_in">limit</span>(10)</span><br><span class="line">        .sort(&#123;name: 1&#125;)</span><br><span class="line">        .select(&#123;name: 1, tags: 1&#125;);</span><br><span class="line">    console.log(courses);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h4 id="使用正则表达式查询"><a href="#使用正则表达式查询" class="headerlink" title="使用正则表达式查询"></a>使用正则表达式查询</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">async <span class="keyword">function</span> <span class="function"><span class="title">getCourse</span></span>() &#123;</span><br><span class="line">    const courses = await Course</span><br><span class="line">        .find(&#123; author: /^Mosh/ &#125;)</span><br><span class="line">        .find(&#123; author: /Hanmedani$/i &#125;)</span><br><span class="line">        .find(&#123; author: /.*Mosh.*/ &#125;)</span><br><span class="line">        .<span class="built_in">limit</span>(10)</span><br><span class="line">        .sort(&#123;name: 1&#125;)</span><br><span class="line">        .select(&#123;name: 1, tags: 1&#125;);</span><br><span class="line">    console.log(courses);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h4 id="获取查询的条数，使用-count-方法"><a href="#获取查询的条数，使用-count-方法" class="headerlink" title="获取查询的条数，使用 count() 方法"></a>获取查询的条数，使用 count() 方法</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">async <span class="keyword">function</span> <span class="function"><span class="title">getCourse</span></span>() &#123;</span><br><span class="line">    const courses = await Course</span><br><span class="line">        .find(&#123;author: <span class="string">'Mosh'</span>, isPublished: <span class="literal">true</span>&#125;)</span><br><span class="line">        .<span class="built_in">limit</span>(10)</span><br><span class="line">        .sort(&#123;name: 1&#125;)</span><br><span class="line">        .count();</span><br><span class="line">    console.log(courses);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="查询分页操作，使用-skin-方法"><a href="#查询分页操作，使用-skin-方法" class="headerlink" title="查询分页操作，使用 skin() 方法"></a>查询分页操作，使用 skin() 方法</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">async <span class="keyword">function</span> <span class="function"><span class="title">getCourse</span></span>() &#123;</span><br><span class="line">    const pageNumber = 2;</span><br><span class="line">    const pageSize = 10;</span><br><span class="line"></span><br><span class="line">    const courses = await Course</span><br><span class="line">        .find(&#123;author: <span class="string">'Mosh'</span>, isPublished: <span class="literal">true</span>&#125;)</span><br><span class="line">        .skip((pageNumber - 1) * pageSize)</span><br><span class="line">        .<span class="built_in">limit</span>(pageSize)</span><br><span class="line">        .sort(&#123;name: 1&#125;)</span><br><span class="line">        .count();</span><br><span class="line">    console.log(courses);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="查询分页操作，使用-skin-方法"><a href="#查询分页操作，使用-skin-方法" class="headerlink" title="查询分页操作，使用 skin() 方法"></a>查询分页操作，使用 skin() 方法</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">async <span class="keyword">function</span> <span class="function"><span class="title">getCourse</span></span>() &#123;</span><br><span class="line">    const pageNumber = 2;</span><br><span class="line">    const pageSize = 10;</span><br><span class="line"></span><br><span class="line">    const courses = await Course</span><br><span class="line">        .find(&#123;author: <span class="string">'Mosh'</span>, isPublished: <span class="literal">true</span>&#125;)</span><br><span class="line">        .skip((pageNumber - 1) * pageSize)</span><br><span class="line">        .<span class="built_in">limit</span>(pageSize)</span><br><span class="line">        .sort(&#123;name: 1&#125;)</span><br><span class="line">        .select(&#123;name: 1, tags: 1&#125;);</span><br><span class="line">    console.log(courses);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <ol>
 <li>注意 limit() 方法也要传入pageSize</li>
 </ol>
@@ -610,9 +610,9 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image" src="/uploads/009.png" alt="congkaiwu">
+              <img class="site-author-image" itemprop="image" src="/uploads/009.png" alt="CongkaiWu">
             
-              <p class="site-author-name" itemprop="name">congkaiwu</p>
+              <p class="site-author-name" itemprop="name">CongkaiWu</p>
               <div class="site-description motion-element" itemprop="description">Keep It Simple, Stupid</div>
           </div>
 
@@ -623,7 +623,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">5</span>
+                    <span class="site-state-item-count">6</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -639,12 +639,6 @@
                     
                   
                     
-                    
-                      
-                    
-                      
-                    
-                      
                     
                       
                     
@@ -723,7 +717,7 @@
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">congkaiwu</span>
+  <span class="author" itemprop="copyrightHolder">CongkaiWu</span>
 
   
 

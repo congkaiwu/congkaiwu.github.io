@@ -101,13 +101,13 @@
 
   <meta name="description" content="Keep It Simple, Stupid">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Congkaiwu Page">
+<meta property="og:title" content="CongkaiWu Page">
 <meta property="og:url" content="http://yoursite.com/index.html">
-<meta property="og:site_name" content="Congkaiwu Page">
+<meta property="og:site_name" content="CongkaiWu Page">
 <meta property="og:description" content="Keep It Simple, Stupid">
 <meta property="og:locale" content="zh-CN">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Congkaiwu Page">
+<meta name="twitter:title" content="CongkaiWu Page">
 <meta name="twitter:description" content="Keep It Simple, Stupid">
 
 
@@ -126,7 +126,7 @@
   };
 </script>
 
-  <title>Congkaiwu Page</title>
+  <title>CongkaiWu Page</title>
   
 
 
@@ -186,7 +186,7 @@
     <div class="custom-logo-site-title">
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Congkaiwu Page</span>
+        <span class="site-title">CongkaiWu Page</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -345,16 +345,193 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/30/安装MongoDB/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/05/Mongoose-数据验证/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="congkaiwu">
+      <meta itemprop="name" content="CongkaiWu">
       <meta itemprop="description" content="Keep It Simple, Stupid">
       <meta itemprop="image" content="/uploads/009.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Congkaiwu Page">
+      <meta itemprop="name" content="CongkaiWu Page">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/06/05/Mongoose-数据验证/" class="post-title-link" itemprop="url">Mongoose 数据验证</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-06-05 00:09:18 / 修改时间：16:38:49" itemprop="dateCreated datePublished" datetime="2019-06-05T00:09:18+08:00">2019-06-05</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Web/" itemprop="url" rel="index"><span itemprop="name">Web</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Web/Node-js/" itemprop="url" rel="index"><span itemprop="name">Node.js</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Web/Node-js/Mongoose/" itemprop="url" rel="index"><span itemprop="name">Mongoose</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="Built-in-Validators（内置验证器）"><a href="#Built-in-Validators（内置验证器）" class="headerlink" title="Built-in Validators（内置验证器）"></a>Built-in Validators（内置验证器）</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">const mongoose = require(<span class="string">'mongoose'</span>);</span><br><span class="line">//连接数据库</span><br><span class="line">mongoose.connect(<span class="string">'mongodb://localhost/playground'</span>, &#123;useNewUrlParser:<span class="literal">true</span>&#125;)</span><br><span class="line">    .<span class="keyword">then</span>(() =&gt; console.log(<span class="string">'Connected to MongoDB...'</span>))</span><br><span class="line">    .catch(err =&gt; console.error(<span class="string">'Could not connect to MongoDB...'</span>, err));</span><br><span class="line">    </span><br><span class="line">const courseSchema = new mongoose.Schema(&#123;</span><br><span class="line">    name: &#123;</span><br><span class="line">        <span class="built_in">type</span>: String, </span><br><span class="line">        required: <span class="literal">true</span>, // <span class="literal">true</span>设置为必填，也可以设置函数</span><br><span class="line">        minlength: 5, // 最小长度</span><br><span class="line">        maxlength: 255, // 最大长度</span><br><span class="line">        // match: /patttern/ // 正则表达式</span><br><span class="line">    &#125;, </span><br><span class="line">    category: &#123;</span><br><span class="line">        <span class="built_in">type</span>: String,</span><br><span class="line">        required: <span class="literal">true</span>,</span><br><span class="line">        enum: [<span class="string">'web'</span>, <span class="string">'mobile'</span>, <span class="string">'network'</span>] // 枚举，该属性的值必须是其中之一</span><br><span class="line">    &#125;,</span><br><span class="line">    author: String,</span><br><span class="line">    tags: [String],</span><br><span class="line">    date: &#123;<span class="built_in">type</span>: Date, default: Date.now&#125;,</span><br><span class="line">    isPublished: Boolean,</span><br><span class="line">    price: &#123;</span><br><span class="line">        <span class="built_in">type</span>: Number,</span><br><span class="line">        required: <span class="function"><span class="title">function</span></span>() &#123; <span class="built_in">return</span> this.isPublished; &#125;, // 这里不可以用箭头函数，箭头函数无法获取this</span><br><span class="line">        min: 20, // 最小为20</span><br><span class="line">        max: 100 // 最大100</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">const Course = new mongoose.model(<span class="string">'Course'</span>, courseSchema);</span><br><span class="line"></span><br><span class="line">async <span class="keyword">function</span> <span class="function"><span class="title">createCourse</span></span>() &#123;</span><br><span class="line">    const course = new Course(&#123;</span><br><span class="line">        name: <span class="string">'Angular Course'</span>,</span><br><span class="line">        category: <span class="string">'web'</span>,</span><br><span class="line">        author: <span class="string">'Mosh'</span>,</span><br><span class="line">        tags: [<span class="string">'angular'</span>, <span class="string">'frontend'</span>],</span><br><span class="line">        isPublished: <span class="literal">true</span>,</span><br><span class="line">        price: 25,</span><br><span class="line">    &#125;);</span><br><span class="line">    // 用trycatch捕获错误</span><br><span class="line">    try &#123;</span><br><span class="line">        const result = await course.save();</span><br><span class="line">        console.log(result);</span><br><span class="line">    &#125; catch (error) &#123;</span><br><span class="line">        console.log(error.message);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">createCourse();</span><br></pre></td></tr></table></figure>
+<h2 id="Custom-Validators（自定义验证器）"><a href="#Custom-Validators（自定义验证器）" class="headerlink" title="Custom Validators（自定义验证器）"></a>Custom Validators（自定义验证器）</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">const courseSchema = new mongoose.Schema(&#123;</span><br><span class="line">    name: String,</span><br><span class="line">    tags: &#123;</span><br><span class="line">        <span class="built_in">type</span>: Array,</span><br><span class="line">        validate: &#123;   // 自定义验证器</span><br><span class="line">            validator: <span class="keyword">function</span>(v) &#123;</span><br><span class="line">                <span class="built_in">return</span> v &amp;&amp; v.length &gt;= 1;</span><br><span class="line">            &#125;,</span><br><span class="line">            message: <span class="string">'A course should have at least one tag.'</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    date: &#123;<span class="built_in">type</span>: Date, default: Date.now&#125;,</span><br><span class="line">    isPublished: Boolean,</span><br><span class="line">    price: Number</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h2 id="Async-Validators（异步验证器）"><a href="#Async-Validators（异步验证器）" class="headerlink" title="Async Validators（异步验证器）"></a>Async Validators（异步验证器）</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">const courseSchema = new mongoose.Schema(&#123;</span><br><span class="line">    name: String,</span><br><span class="line">    tags: &#123;</span><br><span class="line">        <span class="built_in">type</span>: Array,</span><br><span class="line">        validate: &#123;   // 异步验证器</span><br><span class="line">            isAsync: <span class="literal">true</span>,</span><br><span class="line">            validator: <span class="keyword">function</span>(v, callback) &#123;</span><br><span class="line">                setTimeout(() =&gt; &#123;</span><br><span class="line">                    const result = v &amp;&amp; v.length &gt;= 1;</span><br><span class="line">                    callback(result);</span><br><span class="line">                &#125;, 4000);</span><br><span class="line">            &#125;,</span><br><span class="line">            message: <span class="string">'A course should have at least one tag.'</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    date: &#123;<span class="built_in">type</span>: Date, default: Date.now&#125;,</span><br><span class="line">    isPublished: Boolean,</span><br><span class="line">    price: Number</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<h2 id="SchemaType-Options"><a href="#SchemaType-Options" class="headerlink" title="SchemaType Options"></a>SchemaType Options</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">const courseSchema = new mongoose.Schema(&#123;</span><br><span class="line">    category: &#123;</span><br><span class="line">        <span class="built_in">type</span>: String,</span><br><span class="line">        lowercase: <span class="literal">true</span>,  // 小写字母</span><br><span class="line">        // uppercase: <span class="literal">true</span>, // 大写字母</span><br><span class="line">        trim: <span class="literal">true</span>, </span><br><span class="line">        required: <span class="literal">true</span>,</span><br><span class="line">        enum: [<span class="string">'web'</span>, <span class="string">'mobile'</span>, <span class="string">'network'</span>] // 枚举，该属性的值必须是其中之一</span><br><span class="line">    &#125;,</span><br><span class="line">    price: &#123;</span><br><span class="line">        <span class="built_in">type</span>: Number,</span><br><span class="line">        required: <span class="function"><span class="title">function</span></span>() &#123; <span class="built_in">return</span> this.isPublished; &#125;, // 这里不可以用箭头函数，箭头函数无法获取this</span><br><span class="line">        min: 20, // 最小为20</span><br><span class="line">        max: 100, // 最大100</span><br><span class="line">        <span class="built_in">set</span>: v =&gt; Math.round(v), // 自定义<span class="built_in">set</span></span><br><span class="line">        get: v =&gt; Math.round(v) // 自定义get</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/30/安装MongoDB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CongkaiWu">
+      <meta itemprop="description" content="Keep It Simple, Stupid">
+      <meta itemprop="image" content="/uploads/009.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CongkaiWu Page">
     </span>
 
     
@@ -528,13 +705,13 @@
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/30/Mongoose 的增删改查（CRUD）/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="congkaiwu">
+      <meta itemprop="name" content="CongkaiWu">
       <meta itemprop="description" content="Keep It Simple, Stupid">
       <meta itemprop="image" content="/uploads/009.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Congkaiwu Page">
+      <meta itemprop="name" content="CongkaiWu Page">
     </span>
 
     
@@ -587,7 +764,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-05-31 00:27:48" itemprop="dateModified" datetime="2019-05-31T00:27:48+08:00">2019-05-31</time>
+                <time title="修改时间：2019-06-05 00:04:20" itemprop="dateModified" datetime="2019-06-05T00:04:20+08:00">2019-06-05</time>
               
             
           </span>
@@ -680,7 +857,7 @@
 <h4 id="使用or和and方法查询"><a href="#使用or和and方法查询" class="headerlink" title="使用or和and方法查询"></a>使用or和and方法查询</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">async <span class="keyword">function</span> <span class="function"><span class="title">getCourse</span></span>() &#123;</span><br><span class="line">    const courses = await Course</span><br><span class="line">        .find()</span><br><span class="line">        .or([ &#123; author: <span class="string">'Mosh'</span> &#125;, &#123; isPublished: <span class="literal">true</span> &#125; ])</span><br><span class="line">        .and([ &#123;author: <span class="string">'Mosh'</span>, isPublished: <span class="literal">true</span>&#125; ])</span><br><span class="line">        .<span class="built_in">limit</span>(10)</span><br><span class="line">        .sort(&#123;name: 1&#125;)</span><br><span class="line">        .select(&#123;name: 1, tags: 1&#125;);</span><br><span class="line">    console.log(courses);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h4 id="使用正则表达式查询"><a href="#使用正则表达式查询" class="headerlink" title="使用正则表达式查询"></a>使用正则表达式查询</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">async <span class="keyword">function</span> <span class="function"><span class="title">getCourse</span></span>() &#123;</span><br><span class="line">    const courses = await Course</span><br><span class="line">        .find(&#123; author: /^Mosh/ &#125;)</span><br><span class="line">        .find(&#123; author: /Hanmedani$/i &#125;)</span><br><span class="line">        .find(&#123; author: /.*Mosh.*/ &#125;)</span><br><span class="line">        .<span class="built_in">limit</span>(10)</span><br><span class="line">        .sort(&#123;name: 1&#125;)</span><br><span class="line">        .select(&#123;name: 1, tags: 1&#125;);</span><br><span class="line">    console.log(courses);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h4 id="获取查询的条数，使用-count-方法"><a href="#获取查询的条数，使用-count-方法" class="headerlink" title="获取查询的条数，使用 count() 方法"></a>获取查询的条数，使用 count() 方法</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">async <span class="keyword">function</span> <span class="function"><span class="title">getCourse</span></span>() &#123;</span><br><span class="line">    const courses = await Course</span><br><span class="line">        .find(&#123;author: <span class="string">'Mosh'</span>, isPublished: <span class="literal">true</span>&#125;)</span><br><span class="line">        .<span class="built_in">limit</span>(10)</span><br><span class="line">        .sort(&#123;name: 1&#125;)</span><br><span class="line">        .count();</span><br><span class="line">    console.log(courses);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="查询分页操作，使用-skin-方法"><a href="#查询分页操作，使用-skin-方法" class="headerlink" title="查询分页操作，使用 skin() 方法"></a>查询分页操作，使用 skin() 方法</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">async <span class="keyword">function</span> <span class="function"><span class="title">getCourse</span></span>() &#123;</span><br><span class="line">    const pageNumber = 2;</span><br><span class="line">    const pageSize = 10;</span><br><span class="line"></span><br><span class="line">    const courses = await Course</span><br><span class="line">        .find(&#123;author: <span class="string">'Mosh'</span>, isPublished: <span class="literal">true</span>&#125;)</span><br><span class="line">        .skip((pageNumber - 1) * pageSize)</span><br><span class="line">        .<span class="built_in">limit</span>(pageSize)</span><br><span class="line">        .sort(&#123;name: 1&#125;)</span><br><span class="line">        .count();</span><br><span class="line">    console.log(courses);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="查询分页操作，使用-skin-方法"><a href="#查询分页操作，使用-skin-方法" class="headerlink" title="查询分页操作，使用 skin() 方法"></a>查询分页操作，使用 skin() 方法</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">async <span class="keyword">function</span> <span class="function"><span class="title">getCourse</span></span>() &#123;</span><br><span class="line">    const pageNumber = 2;</span><br><span class="line">    const pageSize = 10;</span><br><span class="line"></span><br><span class="line">    const courses = await Course</span><br><span class="line">        .find(&#123;author: <span class="string">'Mosh'</span>, isPublished: <span class="literal">true</span>&#125;)</span><br><span class="line">        .skip((pageNumber - 1) * pageSize)</span><br><span class="line">        .<span class="built_in">limit</span>(pageSize)</span><br><span class="line">        .sort(&#123;name: 1&#125;)</span><br><span class="line">        .select(&#123;name: 1, tags: 1&#125;);</span><br><span class="line">    console.log(courses);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <ol>
 <li>注意 limit() 方法也要传入pageSize</li>
 </ol>
@@ -753,13 +930,13 @@
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/29/JavaScript异步/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="congkaiwu">
+      <meta itemprop="name" content="CongkaiWu">
       <meta itemprop="description" content="Keep It Simple, Stupid">
       <meta itemprop="image" content="/uploads/009.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Congkaiwu Page">
+      <meta itemprop="name" content="CongkaiWu Page">
     </span>
 
     
@@ -933,13 +1110,13 @@
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/26/Git常用命令/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="congkaiwu">
+      <meta itemprop="name" content="CongkaiWu">
       <meta itemprop="description" content="Keep It Simple, Stupid">
       <meta itemprop="image" content="/uploads/009.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Congkaiwu Page">
+      <meta itemprop="name" content="CongkaiWu Page">
     </span>
 
     
@@ -1146,13 +1323,13 @@
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/25/hello-world/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="congkaiwu">
+      <meta itemprop="name" content="CongkaiWu">
       <meta itemprop="description" content="Keep It Simple, Stupid">
       <meta itemprop="image" content="/uploads/009.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Congkaiwu Page">
+      <meta itemprop="name" content="CongkaiWu Page">
     </span>
 
     
@@ -1306,9 +1483,9 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image" src="/uploads/009.png" alt="congkaiwu">
+              <img class="site-author-image" itemprop="image" src="/uploads/009.png" alt="CongkaiWu">
             
-              <p class="site-author-name" itemprop="name">congkaiwu</p>
+              <p class="site-author-name" itemprop="name">CongkaiWu</p>
               <div class="site-description motion-element" itemprop="description">Keep It Simple, Stupid</div>
           </div>
 
@@ -1319,7 +1496,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">5</span>
+                    <span class="site-state-item-count">6</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1335,12 +1512,6 @@
                     
                   
                     
-                    
-                      
-                    
-                      
-                    
-                      
                     
                       
                     
@@ -1402,7 +1573,7 @@
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">congkaiwu</span>
+  <span class="author" itemprop="copyrightHolder">CongkaiWu</span>
 
   
 
