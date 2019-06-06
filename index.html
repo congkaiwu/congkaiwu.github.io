@@ -345,6 +345,200 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/06/node-express-mongo/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CongkaiWu">
+      <meta itemprop="description" content="Keep It Simple, Stupid">
+      <meta itemprop="image" content="/uploads/009.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CongkaiWu Page">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/06/06/node-express-mongo/" class="post-title-link" itemprop="url">node-express-mongo</a>
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-06-06 11:36:43 / 修改时间：16:58:25" itemprop="dateCreated datePublished" datetime="2019-06-06T11:36:43+08:00">2019-06-06</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Demo/" itemprop="url" rel="index"><span itemprop="name">Demo</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="初始化项目"><a href="#初始化项目" class="headerlink" title="初始化项目"></a>初始化项目</h2><ul>
+<li>创建项目目录，并通过npm初始化package.json文件。<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkdir express-mongo-demo</span><br><span class="line"><span class="built_in">cd</span> express-mongo-demo</span><br><span class="line">npm init --yes</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="创建app-js"><a href="#创建app-js" class="headerlink" title="创建app.js"></a>创建app.js</h2><ul>
+<li><p>安装express、mongoose</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm i express</span><br><span class="line">npm i mongoose</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在项目根目录下创建app.js<br><font size="2"><em>app.js</em></font></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">const express = require(<span class="string">'express'</span>);</span><br><span class="line">const mongoose = require(<span class="string">'mongoose'</span>);</span><br><span class="line"></span><br><span class="line">const app = express();</span><br><span class="line">app.use(express.json());</span><br><span class="line">app.use(express.urlencoded(&#123;extended: <span class="literal">true</span>&#125;));</span><br><span class="line">mongoose.set(<span class="string">'useFindAndModify'</span>, <span class="literal">false</span>);//让部分更新和删除方法不提示弃用警告</span><br><span class="line"></span><br><span class="line">mongoose.connect(<span class="string">'mongodb://localhost/myapp'</span>, &#123;useNewUrlParser: <span class="literal">true</span>&#125;)</span><br><span class="line">    .<span class="keyword">then</span>(() =&gt; console.log(<span class="string">'Connected to MongoDB...'</span>))</span><br><span class="line">    .catch(err =&gt; console.error(<span class="string">'Could not connect to MongoDB...'</span>, err));</span><br><span class="line"></span><br><span class="line">const port = process.env.POST || 3000;</span><br><span class="line">app.listen(port, () =&gt; console.log(`Listening on port <span class="variable">$&#123;port&#125;</span>`));</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="创建model"><a href="#创建model" class="headerlink" title="创建model"></a>创建model</h2><ul>
+<li>创建models文件夹，该文件夹用于管理model文件。</li>
+<li><p>在该目录下创建customer.js文件。<br><font size="2"><em>models/customer.js</em></font></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">const mongoose = require(<span class="string">'mongoose'</span>);</span><br><span class="line">const Joi = require(<span class="string">'@hapi/joi'</span>);</span><br><span class="line"></span><br><span class="line">const Customer = mongoose.model(<span class="string">'Customer'</span>, new mongoose.Schema(&#123;</span><br><span class="line">    name: &#123;</span><br><span class="line">        <span class="built_in">type</span>: String,</span><br><span class="line">        required: <span class="literal">true</span>,</span><br><span class="line">        minlength: 5,</span><br><span class="line">        maxlength: 50</span><br><span class="line">    &#125;,</span><br><span class="line">    phone: &#123;</span><br><span class="line">        <span class="built_in">type</span>: String,</span><br><span class="line">        trim: <span class="literal">true</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    tags: &#123;</span><br><span class="line">        <span class="built_in">type</span>: Array,</span><br><span class="line">        validate: <span class="keyword">function</span>(v) &#123;</span><br><span class="line">            <span class="built_in">return</span> v &amp;&amp; v.length &gt;= 1;</span><br><span class="line">        &#125;,</span><br><span class="line">        message: <span class="string">'tags is illegal.'</span></span><br><span class="line">    &#125;,</span><br><span class="line">    des: &#123;</span><br><span class="line">        <span class="built_in">type</span>: String,</span><br><span class="line">        required: <span class="function"><span class="title">function</span></span>() &#123; <span class="built_in">return</span> this.isPublish; &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    isPublish: &#123;</span><br><span class="line">        <span class="built_in">type</span>: Boolean,</span><br><span class="line">        default: <span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;));</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> validateCustomer(customer) &#123;</span><br><span class="line">    const schema = &#123;</span><br><span class="line">        name: Joi.string().min(5).max(50).required(),</span><br><span class="line">        phone: Joi.string(),</span><br><span class="line">        tags: Joi.array().min(1),</span><br><span class="line">        des: Joi.string(),</span><br><span class="line">        isPublish: Joi.boolean()</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">return</span> Joi.validate(customer, schema);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">module.exports = &#123;</span><br><span class="line">    Customer: Customer,</span><br><span class="line">    validate: validateCustomer</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>用<code>npm i @hapi/joi</code>命令安装Joi，用于数据验证，将错误信息发送给客户端。点击<a href="https://github.com/hapijs/joi/blob/v15.0.3/API.md#booleantruthyvalue" target="_blank" rel="noopener">API</a>查看。</p>
+</li>
+<li>Schema 定义了 collection 中 document 的结构。Model 则是通过 Schema 创建。</li>
+</ul>
+<h2 id="创建routes"><a href="#创建routes" class="headerlink" title="创建routes"></a>创建routes</h2><ul>
+<li>创建routes文件夹，该文件夹用于管理router文件。</li>
+<li><p>在该目录下创建customer.js文件。<br><font size="2"><em>routes/customer.js</em></font></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line">const express = require(<span class="string">'express'</span>);</span><br><span class="line">const &#123;Customer, validate&#125; = require(<span class="string">'../models/customer'</span>);</span><br><span class="line"></span><br><span class="line">const router = express.Router();</span><br><span class="line"></span><br><span class="line">router.get(<span class="string">'/'</span>, async (req, res) =&gt; &#123;</span><br><span class="line">    const customers = await Customer.find().sort(<span class="string">'name'</span>);</span><br><span class="line">    res.send(customers);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">router.get(<span class="string">'/:id'</span>, async (req, res) =&gt; &#123;</span><br><span class="line">    try &#123;</span><br><span class="line">        const customer = await Customer.findById(req.params.id);</span><br><span class="line">        <span class="keyword">if</span> (!customer) <span class="built_in">return</span> res.status(404).send(`<span class="variable">$&#123;req.params.id&#125;</span> 不存在。`);</span><br><span class="line">        res.send(customer);</span><br><span class="line">    &#125; catch (error) &#123;</span><br><span class="line">        res.send(error.message)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">router.post(<span class="string">'/'</span>, async (req, res) =&gt; &#123;</span><br><span class="line">    const &#123;error&#125; = validate(req.body);</span><br><span class="line">    <span class="keyword">if</span> (error) <span class="built_in">return</span> res.status(400).send(error.details[0].message);</span><br><span class="line">    <span class="built_in">let</span> customer = new Customer(&#123;</span><br><span class="line">        name: req.body.name,</span><br><span class="line">        phone: req.body.phone,</span><br><span class="line">        tags: req.body.tags,</span><br><span class="line">        des: req.body.des,</span><br><span class="line">        isPublish: req.body.isPublish</span><br><span class="line">    &#125;);</span><br><span class="line">    try &#123;</span><br><span class="line">        customer = await customer.save();</span><br><span class="line">        res.send(customer);</span><br><span class="line">    &#125; catch (error) &#123;</span><br><span class="line">        res.send(error.message);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">router.put(<span class="string">'/:id'</span>, async (req, res) =&gt; &#123;</span><br><span class="line">    const &#123;error&#125; = validate(req.body);</span><br><span class="line">    <span class="keyword">if</span> (error) <span class="built_in">return</span> res.status(400).send(error.details[0].message);</span><br><span class="line">    try &#123;</span><br><span class="line">        const customer = await Customer.findByIdAndUpdate(req.params.id, &#123;</span><br><span class="line">            <span class="variable">$set</span>: &#123;</span><br><span class="line">                name: req.body.name,</span><br><span class="line">                phone: req.body.phone,</span><br><span class="line">                tags: req.body.tags,</span><br><span class="line">                des: req.body.des,</span><br><span class="line">                isPublish: req.body.isPublish</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;, &#123; new: <span class="literal">true</span> &#125;);</span><br><span class="line">        <span class="keyword">if</span> (!customer) <span class="built_in">return</span> res.status(400).send(`<span class="variable">$&#123;req.params.id&#125;</span> 不存在。`);</span><br><span class="line">        res.send(customer);</span><br><span class="line">    &#125; catch (error) &#123;</span><br><span class="line">        res.send(error.message);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">router.delete(<span class="string">'/:id'</span>, async (req, res) =&gt; &#123;</span><br><span class="line">    const customer = await Customer.findByIdAndRemove(req.params.id);</span><br><span class="line">    <span class="keyword">if</span> (!customer) <span class="built_in">return</span> res.status(404).send(`<span class="variable">$&#123;req.params.id&#125;</span> 不存在。`);</span><br><span class="line">    res.send(customer);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">module.exports = router;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>操作数据库的回调方法要用async、await。</p>
+</li>
+<li>定义 RESTful Apis，get查询，post创建，put更新，delete删除。</li>
+</ul>
+<h2 id="注册路由"><a href="#注册路由" class="headerlink" title="注册路由"></a>注册路由</h2><ul>
+<li>返回修改app.js。<br><font size="2"><em>app.js</em></font><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">const express = require(<span class="string">'express'</span>);</span><br><span class="line">const mongoose = require(<span class="string">'mongoose'</span>);</span><br><span class="line">const customer = require(<span class="string">'./routes/customer'</span>);</span><br><span class="line"></span><br><span class="line">const app = express();</span><br><span class="line">app.use(express.json());</span><br><span class="line">app.use(express.urlencoded(&#123;extended: <span class="literal">true</span>&#125;));</span><br><span class="line">mongoose.set(<span class="string">'useFindAndModify'</span>, <span class="literal">false</span>);//让部分更新和删除方法不提示弃用警告</span><br><span class="line">app.use(<span class="string">'/api/customer'</span>, customer);</span><br><span class="line"></span><br><span class="line">mongoose.connect(<span class="string">'mongodb://localhost/myapp'</span>, &#123;useNewUrlParser: <span class="literal">true</span>&#125;)</span><br><span class="line">    .<span class="keyword">then</span>(() =&gt; console.log(<span class="string">'Connected to MongoDB...'</span>))</span><br><span class="line">    .catch(err =&gt; console.error(<span class="string">'Could not connect to MongoDB...'</span>, err));</span><br><span class="line"></span><br><span class="line">const port = process.env.POST || 3000;</span><br><span class="line">app.listen(port, () =&gt; console.log(`Listening on port <span class="variable">$&#123;port&#125;</span>`));</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/05/Mongoose-数据验证/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1496,7 +1690,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-count">7</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1525,7 +1719,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">6</span>
+                      
+                    
+                    <span class="site-state-item-count">7</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
